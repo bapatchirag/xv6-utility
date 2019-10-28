@@ -551,28 +551,3 @@ proc_deets(void)
     
     return 0;
 }
-
-int
-set_new_priority(int pid, int new_prio)
-{
-	struct proc *p;
-	int flag = 0;
-	
-	for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
-	{
-		if(pid == p->pid)
-		{
-			p->priority = new_prio;
-			cprintf("Priority change: PID - %d; Priority - %s successful\n", p->pid, priority_name[p->priority]);
-			flag = 1;
-			break;
-		}
-	}
-	
-	if(!flag)
-	{
-		cprintf("Priority change unsuccessful: PID not found\n");
-	}
-	
-	return 0;
-}
