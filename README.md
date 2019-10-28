@@ -41,3 +41,8 @@ Basic Linux shell utility commands are implemented on the xv6 operating system, 
   - Any new user program (assume prog.c) to be added to xv6 need to be added to the Makefile under the following heads: 
     - UPROGS: \_prog\
     - EXTRA: prog.c\
+    
+### IMPORTANT
+
+Only user programs files are to be newly added into the 'xv6-public' folder; the rest of the files are provided as a reference to modify/add to the contents of the pre-existing files.
+Take note of the differences in the files provided and the already existing files, and modify the system call and process related files, and the Makefile accordingly.
