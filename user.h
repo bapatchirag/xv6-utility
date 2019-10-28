@@ -24,7 +24,6 @@ char* sbrk(int);
 int sleep(int);
 int uptime(void);
 int proc(void);
-void setprio(int, int);
 int halt(void);
 
 // ulib.c
