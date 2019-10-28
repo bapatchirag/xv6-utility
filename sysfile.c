@@ -18,7 +18,6 @@
 #include "x86.h"
 
 extern int proc_deets();
-extern int set_new_priority(int, int);
 
 // Fetch the nth word-sized system call argument as a file descriptor
 // and return both the descriptor and the corresponding struct file.
@@ -454,12 +453,6 @@ sys_proc(void)
     return 0;
 }
 
-int
-sys_setprio(int pid, int priority)
-{
-	set_new_priority(pid, priority);
-	return 0;
-}
 
 int
 sys_halt(void)
