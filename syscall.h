@@ -21,5 +21,4 @@
 #define SYS_mkdir  20
 #define SYS_close  21
 #define SYS_proc   22
-#define SYS_setprio 23
-#define SYS_halt	24
+#define SYS_halt	 23
