@@ -181,15 +181,13 @@ UPROGS=\
 	_usertests\
 	_zombie\
 	_ps\
-	_procreate\
 	_clear\
 	_touch\
 	_wc\
 	_exit\
-	_setnewprio\
 
-fs.img: mkfs README text.txt $(UPROGS)
-	./mkfs fs.img README text.txt $(UPROGS)
+fs.img: mkfs README $(UPROGS)
+	./mkfs fs.img README $(UPROGS)
 
 -include *.d
 
@@ -256,8 +254,8 @@ qemu-nox-gdb: fs.img xv6.img .gdbinit
 EXTRA=\
 	mkfs.c ulib.c user.h cat.c echo.c forktest.c grep.c kill.c\
 	ln.c ls.c mkdir.c rm.c stressfs.c usertests.c zombie.c\
-	printf.c umalloc.c exit.c ps.c procreate.c clear.c touch.c wc.c setnewprio.c\
-	README text.txt dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
+	printf.c umalloc.c exit.c ps.c clear.c touch.c wc.c\
+	README dot-bochsrc *.pl toc.* runoff runoff1 runoff.list\
 	.gdbinit.tmpl gdbutil\
 
 dist:
