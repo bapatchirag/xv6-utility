@@ -42,6 +42,8 @@ Basic Linux shell utility commands are implemented on the xv6 operating system, 
     - UPROGS: \_prog\
     - EXTRA: prog.c\
     
+  - The programs for the commands to be implemented have already been added into the Makefile (above steps are for any other user programs to be added).
+    
 ### IMPORTANT
 
 Only user programs files are to be newly added into the 'xv6-public' folder; the rest of the files are provided as a reference to modify/add to the contents of the pre-existing files.
