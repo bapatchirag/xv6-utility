@@ -539,13 +539,12 @@ proc_deets(void)
 {
     struct proc *p;
     
-    cprintf("PID\tNAME\tPRIORITY\n");
+    cprintf("PID\tNAME\n");
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
     {
         if(p->state != 0 || p->state == 5)
         {
-            cprintf("%d\n", priority_name[p->priority]);
-            //cprintf("%d\t%s\t%s\n", p->pid, p->name, priority_name[p->priority]);
+            cprintf("%d\t%s\n", p->pid, p->name);
         }
     }
     
