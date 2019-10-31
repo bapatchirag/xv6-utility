@@ -30,6 +30,7 @@ Basic Linux shell utility commands are implemented on the xv6 operating system, 
   
   - The ps and exit commands are implemented as system calls, thus their actual codes are present in the sysfile.c file.
     - The ps command accesses the process table, which is only accessible in the proc.c file. Thus, the system call calls a function from proc.c, called proc_deets.
+    - For the exit command to work, an additional line of code has been added to the Makefile under the QEMUOPTS heading; refer.
     
   - Files pertaining to system calls are as follows:
     - syscall.c
