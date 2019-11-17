@@ -29,7 +29,7 @@ Basic Linux shell utility commands are implemented on the xv6 operating system, 
   can also be used. However, the commands will be mirrored on both the existing terminal and the new emulator window opened. Also, the clear command will not work on the emulator, but will work on the existing terminal.
   
   - The ps and exit commands are implemented as system calls, thus their actual codes are present in the sysfile.c file.
-    - The ps command accesses the process table, which is only accessible in the proc.c file. Thus, the system call calls a function from proc.c, called proc_deets.
+    - The ps command accesses the process table, which is only accessible in the proc.c file. Thus, the system call calls a function from proc.c, called proc_deets. (Also, an additional structure member needs to be added to the process table, in the proc.h header file, as: *int priority;*)
     - For the exit command to work, an additional line of code has been added to the Makefile under the QEMUOPTS heading; refer.
     
   - Files pertaining to system calls are as follows:
