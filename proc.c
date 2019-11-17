@@ -89,6 +89,7 @@ allocproc(void)
 found:
   p->state = EMBRYO;
   p->pid = nextpid++;
+  p->priority = 10;
 
   release(&ptable.lock);
 
@@ -323,14 +324,14 @@ wait(void)
 void
 scheduler(void)
 {
-  struct proc *p;
+  struct proc *p, *p1;
   struct cpu *c = mycpu();
   c->proc = 0;
   
   for(;;){
     // Enable interrupts on this processor.
     sti();
-
+	struct proc *highP = (void*)0;
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
@@ -340,6 +341,20 @@ scheduler(void)
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
+      
+      highP = p;
+      for(p1 = ptable.proc; p1 < &ptable.proc[NPROC]; p1++)
+      {
+	    if(p1->state != RUNNABLE)
+          continue;	
+        
+        if(highP->priority > p1->priority)
+          highP = p1;
+      }
+      
+      p = highP;
+      switchuvm(p);
+      
       c->proc = p;
       switchuvm(p);
       p->state = RUNNING;
@@ -549,4 +564,24 @@ proc_deets(void)
     }
     
     return 0;
+}
+
+int
+chpr(int pid, int priority)
+{
+	struct proc *p;
+	acquire(&ptable.lock);
+	
+	for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
+	{
+		if(p->pid == pid)
+		{
+			p->priority = priority;
+			cprintf("Priority change: PID - %d; Priority - %s successful\n", p->pid, priority_name[p->priority]);
+			break;
+		}
+	}
+	
+	release(&ptable.lock);
+	return pid;
 }
